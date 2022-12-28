@@ -154,6 +154,8 @@ build.json @home-assistant/supervisor
 /homeassistant/components/blueprint/ @home-assistant/core
 /tests/components/blueprint/ @home-assistant/core
 /homeassistant/components/bluesound/ @thrawnarn
+/homeassistant/components/bluet/ @tracktwo
+/tests/components/bluet/ @tracktwo
 /homeassistant/components/bluetooth/ @bdraco
 /tests/components/bluetooth/ @bdraco
 /homeassistant/components/bluetooth_adapters/ @bdraco

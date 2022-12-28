@@ -1,0 +1,19 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "A beacon with this identity key is already configured"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "count": "Count",
+                    "exponent": "Exponent",
+                    "identity_key": "Identity key",
+                    "name": "Name",
+                    "window_size": "Window Size"
+                },
+                "title": "Add BlueT Beacon"
+            }
+        }
+    }
+}

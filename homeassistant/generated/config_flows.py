@@ -61,6 +61,7 @@ FLOWS = {
         "blebox",
         "blink",
         "bluemaestro",
+        "bluet",
         "bluetooth",
         "bmw_connected_drive",
         "bond",

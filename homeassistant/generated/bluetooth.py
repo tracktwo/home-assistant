@@ -29,6 +29,11 @@ BLUETOOTH: list[dict[str, bool | str | int | list[int]]] = [
     },
     {
         "connectable": False,
+        "domain": "bluet",
+        "service_data_uuid": "0000feaa-0000-1000-8000-00805f9b34fb",
+    },
+    {
+        "connectable": False,
         "domain": "bthome",
         "service_data_uuid": "0000181c-0000-1000-8000-00805f9b34fb",
     },

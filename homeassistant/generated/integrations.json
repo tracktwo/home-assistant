@@ -596,6 +596,12 @@
       "config_flow": false,
       "iot_class": "local_polling"
     },
+    "bluet": {
+      "name": "BlueT",
+      "integration_type": "device",
+      "config_flow": true,
+      "iot_class": "local_polling"
+    },
     "bluetooth": {
       "name": "Bluetooth",
       "integration_type": "hub",
