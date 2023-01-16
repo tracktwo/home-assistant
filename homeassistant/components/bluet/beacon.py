@@ -221,7 +221,7 @@ class BlueTDevice:
 
         # Convert the temperature back to a float from the 8.8 fixed point value
         # The rest are all in immediately usable form.
-        self.temperature = temp / 256
+        self.temperature = round(temp / 256, 1)
         self.battery = batt
         self.advertising_count = adv
         self.uptime = uptime
