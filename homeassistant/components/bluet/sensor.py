@@ -131,4 +131,4 @@ class BlueTSensorEntity(CoordinatorEntity[BlueTCoordinator], RestoreSensor):
         """Entity was added to hass. Restore the state if there is any."""
         await super().async_added_to_hass()
         if val := await self.async_get_last_sensor_data():
-            self.entity_description.set_fn(self._device, val)
+            self.entity_description.set_fn(self._device, val.native_value)
