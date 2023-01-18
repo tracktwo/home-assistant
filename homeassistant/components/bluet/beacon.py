@@ -78,6 +78,18 @@ class BlueTDevice:
         # Compute the EID window for the current count
         self._eids = self._compute_eids(self.count)
 
+    def set_battery(self, val):
+        """Set the battery level."""
+        self.battery = val
+
+    def set_signal_strength(self, val):
+        """Set the signal strength."""
+        self.signal_strength = val
+
+    def set_temperature(self, val):
+        """Set the temperature."""
+        self.temperature = val
+
     def process_packet(self, packet: BluetoothServiceInfoBleak):
         """Process a packet.
 
