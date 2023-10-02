@@ -11,9 +11,10 @@ from voluptuous_serialize import vol
 from homeassistant.components.bluetooth.models import BluetoothChange
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.collection import StorageCollection
+from homeassistant.helpers.collection import DictStorageCollection
 from homeassistant.helpers.storage import Store
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+from homeassistant.util import dt as dt_util
 
 from .beacon import BlueTDevice
 from .const import (
@@ -63,7 +64,7 @@ class BlueTCoordinator(DataUpdateCoordinator[BlueTDevice]):
             storage: BlueTStorage = self.hass.data[DOMAIN][DATA_STORAGE]
             new_data = {
                 CONF_COUNT: int(self.device.count),
-                CONF_LAST_SEEN: datetime.utcnow().isoformat(),
+                CONF_LAST_SEEN: dt_util.utcnow().isoformat(),
             }
             await storage.async_update_item(
                 self.entry.data[CONF_IDENTITY_KEY], new_data
@@ -95,7 +96,7 @@ UPDATE_FIELDS = {
 }
 
 
-class BlueTStorage(StorageCollection):
+class BlueTStorage(DictStorageCollection):
     """Manage persistent storage for BlueT devices."""
 
     CREATE_SCHEMA = vol.Schema(CREATE_FIELDS)
@@ -103,15 +104,15 @@ class BlueTStorage(StorageCollection):
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Create a storage object."""
-        super().__init__(Store(hass, STORAGE_VERSION, STORAGE_KEY), _LOGGER)
+        super().__init__(Store(hass, STORAGE_VERSION, STORAGE_KEY))
 
     async def _process_create_data(self, data: dict) -> dict:
         """Create a new entry."""
         return self.CREATE_SCHEMA(data)
 
-    async def _update_data(self, data: dict, update_data: dict) -> dict:
+    async def _update_data(self, item: dict, update_data: dict) -> dict:
         """Update an entry."""
-        return {**data, **self.UPDATE_SCHEMA(update_data)}
+        return {**item, **self.UPDATE_SCHEMA(update_data)}
 
     def _get_suggested_id(self, info: dict) -> str:
         return str(info[CONF_IDENTITY_KEY])
