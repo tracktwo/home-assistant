@@ -4,8 +4,8 @@ from datetime import datetime
 import struct
 from unittest.mock import AsyncMock, patch
 
-from Crypto.Cipher import AES
 from bleak.backends.device import BLEDevice
+from Crypto.Cipher import AES
 from home_assistant_bluetooth import BluetoothServiceInfoBleak
 
 from homeassistant.components.bluet.bluet import (
@@ -147,7 +147,7 @@ def build_eddystone_service_info(
         service_uuids=[EDDYSTONE_SERVICE_UUID],
         service_data={EDDYSTONE_SERVICE_UUID: packet},
         source="local",
-        device=BLEDevice(FAKE_BLE_ADDRESS_1, None),
+        device=BLEDevice(FAKE_BLE_ADDRESS_1, None, None, 0),
         advertisement=generate_advertisement_data(),
         time=0,
         connectable=False,
