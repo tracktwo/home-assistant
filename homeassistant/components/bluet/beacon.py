@@ -11,6 +11,8 @@ from Crypto.Cipher import AES
 from home_assistant_bluetooth import BluetoothServiceInfoBleak
 import numpy as np
 
+from homeassistant.util import dt as dt_util
+
 from .const import EDDYSTONE_SERVICE_UUID
 
 _LOGGER = logging.getLogger(__name__)
@@ -155,7 +157,7 @@ class BlueTDevice:
             self._eids[index].count,
             index,
         )
-        self.last_seen = datetime.utcnow()
+        self.last_seen = dt_util.utcnow()
         self.address = address
 
         while index < self.window_size:
@@ -322,7 +324,7 @@ class BlueTDevice:
         """Build a stale EID list if the current EID list is very stale."""
 
         if self.last_seen:
-            delta = datetime.utcnow() - self.last_seen
+            delta = dt_util.utcnow() - self.last_seen
             seconds_since_last_seen = delta.total_seconds()
 
             # Add the current time delta to the count at the center of the
@@ -344,7 +346,6 @@ class BlueTDevice:
             # may or may not be able to resync, depending on how out of sync
             # the two got.
             if expected_count > self._eids[-1].count:
-
                 # If we already have a resync list for this count then there isn't
                 # anything to do.
                 if (
