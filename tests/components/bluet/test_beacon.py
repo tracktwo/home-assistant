@@ -1,6 +1,6 @@
 """Test cases for the BlueT beacon."""
 
-from datetime import datetime
+from datetime import UTC, datetime
 
 from freezegun import freeze_time
 
@@ -218,7 +218,7 @@ def test_beacon_lost_power():
         15,
         0,
         3,
-        datetime(2020, 6, 15, 3, 15, 45),
+        datetime(2020, 6, 15, 3, 15, 45, tzinfo=UTC),
     )
     assert device.new_data_available is False
     assert device.temperature == 0

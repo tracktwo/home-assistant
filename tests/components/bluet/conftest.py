@@ -1,6 +1,6 @@
 """Test fixtures for BlueT tests."""
 
-from datetime import datetime
+from datetime import UTC, datetime
 import struct
 from unittest.mock import AsyncMock, patch
 
@@ -51,10 +51,10 @@ FAKE_CONFIG_DATA_2 = {
 FAKE_BLE_ADDRESS_1 = "00:11:22:33:44:55"
 FAKE_BLE_ADDRESS_2 = "AA:BB:CC:DD:EE:FF"
 
-FAKE_TIME_1 = datetime(2022, 12, 31, 11, 59, 30)
-FAKE_TIME_2 = datetime(2023, 1, 1, 12, 1, 2)
-FAKE_TIME_3 = datetime(2025, 10, 31, 6, 30, 0)
-FAKE_TIME_4 = datetime(2024, 3, 29, 18, 4, 12)
+FAKE_TIME_1 = datetime(2022, 12, 31, 11, 59, 30, tzinfo=UTC)
+FAKE_TIME_2 = datetime(2023, 1, 1, 12, 1, 2, tzinfo=UTC)
+FAKE_TIME_3 = datetime(2025, 10, 31, 6, 30, 0, tzinfo=UTC)
+FAKE_TIME_4 = datetime(2024, 3, 29, 18, 4, 12, tzinfo=UTC)
 
 
 # IDENTITY_KEY_1 at count 0
